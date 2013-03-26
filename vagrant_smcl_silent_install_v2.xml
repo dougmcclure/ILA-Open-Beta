@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<agent-input acceptLicense='true'>
+
+<!-- Change the location specification below in 'value' to your directory -->
+<preference name='com.ibm.cic.common.core.preferences.eclipseCache' value='/home/scla/IBM/IBMIMShared'/>
+
+<preference name='com.ibm.cic.common.core.preferences.connectTimeout' value='30'/>
+<preference name='com.ibm.cic.common.core.preferences.readTimeout' value='45'/>
+<preference name='com.ibm.cic.common.core.preferences.downloadAutoRetryCount' value='0'/>
+<preference name='offering.service.repositories.areUsed' value='true'/>
+<preference name='com.ibm.cic.common.core.preferences.ssl.nonsecureMode' value='false'/>
+<preference name='com.ibm.cic.common.core.preferences.http.disablePreemptiveAuthentication' value='false'/>
+<preference name='http.ntlm.auth.kind' value='NTLM'/>
+<preference name='http.ntlm.auth.enableIntegrated.win32' value='true'/>
+<preference name='com.ibm.cic.common.core.preferences.preserveDownloadedArtifacts' value='true'/>
+<preference name='com.ibm.cic.common.core.preferences.keepFetchedFiles' value='false'/>
+<preference name='PassportAdvantageIsEnabled' value='false'/>
+<preference name='com.ibm.cic.common.core.preferences.searchForUpdates' value='false'/>
+<preference name='com.ibm.cic.agent.ui.displayInternalVersion' value='false'/>
+<preference name='com.ibm.cic.common.sharedUI.showErrorLog' value='true'/>
+<preference name='com.ibm.cic.common.sharedUI.showWarningLog' value='true'/>
+<preference name='com.ibm.cic.common.sharedUI.showNoteLog' value='true'/>
+
+<server>
+<!-- Change the 2 lines below to specify the directory where you extracted the install image -->
+<repository location='/opt/scla/im.linux.x86'/>
+<repository location='/opt/scla/'/>
+</server>
+
+<!-- Change the 2 lines below to specify your directory where you would like IBM Installation Manager to be installed. -->
+<profile id='IBM Installation Manager' installLocation='/home/scla/IBM/InstallationManager/eclipse' kind='self'>
+<data key='eclipseLocation' value='/home/scla/IBM/InstallationManager/eclipse'/>
+
+<data key='user.import.profile' value='false'/>
+<data key='cic.selector.os' value='linux'/>
+<data key='cic.selector.arch' value='x86_64'/>
+<data key='cic.selector.ws' value='gtk'/>
+<data key='cic.selector.nl' value='de,ru,ko,el,en,it,pt_BR,fr,hu,es,zh,cs,ar,zh_TW,zh_HK,ja,pl,da,tr'/>
+</profile>
+<install modify='false'>
+<offering id='com.ibm.cic.agent' version='1.6.1000.20121109_1537' profile='IBM Installation Manager' features='agent_core,agent_jre' installFixes='none'/>
+<offering id='com.ibm.tivoli.scloganalytics' profile='IBM Log Analytics Workgroup Edition' features='IBM Log Analytics Workgroup Edition,LOG_FILE_AGENT' installFixes='none'/>
+</install>
+
+<!-- Change the installation location as per installation machine environment.  This  -->
+<!-- is the directory where you want the software to be installed.                    -->
+<profile id='IBM Log Analytics Workgroup Edition' installLocation='/opt/scla/driver1/'>
+
+<!-- Change the value setting in the next line.  It should match the installationLocation -->
+<!-- setting in the line above.                                                           -->
+<data key='eclipseLocation' value='/opt/scla/driver1/'/>
+
+<data key='user.import.profile' value='false'/>
+<data key='cic.selector.os' value='linux'/>
+<data key='cic.selector.arch' value='x86_64'/>
+<data key='cic.selector.ws' value='gtk'/>
+<data key='cic.selector.nl' value='en'/>
+
+<!-- Note: Default port numbers used by IBM SmartCloud Log Analytics, modify the values ONLY if required -->
+<data key='user.unity.port.number,com.ibm.tivoli.scloganalytics' value='9988'/>
+<data key='user.unity.secureport.number,com.ibm.tivoli.scloganalytics' value='9987'/>
+<data key='user.database.port.number,com.ibm.tivoli.scloganalytics' value='1627'/>
+<data key='user.eif.port.number,com.ibm.tivoli.scloganalytics' value='5529'/>
+<data key='user.searchengine.port.number,com.ibm.tivoli.scloganalytics' value='9989'/>
+<data key='user.searchengineQS.port.number,com.ibm.tivoli.scloganalytics' value='7205'/>
+</profile>
+</agent-input>

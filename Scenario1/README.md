@@ -8,6 +8,7 @@ Readme
 6. download files from git repot into host shared directory 
 7. verify these are in place (other dir/files are added during vagrant up)
 
+'''
 ../shared - contains all vagrant provisioning shell scripts, two files for building base boxes and below directories
 ../shared/box1 - contains Vagrantfile for building box1, copy into the directory you created for box1
 ../shared/box2 - contains Vagrantfile for building box2, copy into the directory you created for box2
@@ -17,18 +18,21 @@ Readme
 ../shared/prereq - contains to directories: grp1- all files downloaded for building basics for box1 & box2, grp2- all files needed to build box2 plus WebSphere Liberty and a sample app
 ../shared/prereq/grp1 - files downloaded by download-prereq.sh script, used in building box1 & box2
 ../shared/prereq/grp2 - files downloaded by download-prereq.sh script, used in building box2
+'''
 
 8. download SCAA OpenBeta Driver 1 and place in ../shared/grp1 directory
 9. decide on deployment topology: deployment options - stand alone, scenario1, scenario2, scenario3
 
+'''
 standalone- box1 only with SCAA OpenBeta driver 1 installed using sample DayTrader WebSphere and DB2 logs
 scenario1 - box1 (as above) plus box2 with WebSphere Liberty 8.5.next installed using a sample Online Polling application. Using SCAA OpenBeta driver 1 LFA to send application logs to SCAA
 scenario2 - future
 scenatio3 - future
+'''
 
-Decide if you'll be starting with a standalone SCAA OpenBeta driver 1 scenario will be deployed or the multi-box sample application scenario will be deployed. If just stand alone, then you can comment out the grp1-provision-scenario1.sh provisioning script in box1's Vagrantfile.
+10. decide if you'll be starting with a standalone SCAA OpenBeta driver 1 scenario will be deployed or the multi-box sample application scenario will be deployed. If just stand alone, then you can comment out the grp1-provision-scenario1.sh provisioning script in box1's Vagrantfile.
 
-10. standalone: from the directory created for box1, issue vagrant up command
+11. standalone: from the directory created for box1, issue vagrant up command
 
 If this is the first time, the following happens
 
@@ -38,7 +42,7 @@ If this is the first time, the following happens
 
 Upon completion of all provisioning scripts, SCAA OpenBeta driver 1 is available at http://10.10.10.2:9988/Unity and will have saved searches available for use.
 
-11. scenario1 box1:  from the directory created for box1, issue vagrant up command
+12. scenario1 box1:  from the directory created for box1, issue vagrant up command
 
 If this is the first time, the following happens
 
@@ -51,19 +55,19 @@ Upon completion of all provisioning scripts, SCAA OpenBeta driver 1 is available
 
 It's recommended that after the first successful vagrant up for box1 that the download_prereq.sh is commented out in the box1 Vagrantfile. This will allow any subsequent boxes to be spun up and provisioned much quicker.
 
-12. scenario1 box2: from the directory created for box2, issue vagrant up command
+13. scenario1 box2: from the directory created for box2, issue vagrant up command
 
 - the base box is imported and spun up assigning an IP Address (10.10.10.3 by default), creating shared folders, etc.
 - if needed, the provisioning script download_prereq.sh is available to run if uncommented in Vagrantfile. If run this installs one yum plugin package and then downloads all of the other required packages into a local directory. This script also downloads WebSphere Liberty 8.5 early access version and a sample application for Liberty (as well as Apache Derby pre-req for that sample app). Verify that you see the two WebSphere Liberty .jars successfully downloaded
 - provisioning script grp2-provision-scaa-d1-LFA-only.sh is run which does the actual installation of the required pre-requesites for SCAA OpenBeta driver 1 LFA.
 - provisioning script grp2-provision-was_liberty_demo.sh is run installs WebSphere Liberty 8.5.next, installs the OnlinePollingSample server app and a new server.xml file with lower level logging enabled. The files for the LFA to monitor the OnlinePollingSample server app are installed and the LFA is restarted. At this time log records are ready to send to SCAA OpenBeta driver 1 on box1.
 
-13. Launch SCAA OpenBeta driver 1 by launching your Firefox 17 browser pointing to http://10.10.10.2:9988/Unity and logging in with unityadmin:unityadmin.
-14. Launch the Online Polling Sample server app in your browser at http://10.10.10.3:9080/OnlinePollingSampleWeb/VoteServlet.
-15. Initialize the Online Polling Sample server app by selecting one of the two options.
-16. Cast some votes in the sample app.
-17. In the SCAA browser window, click on the 'Liberty_Trace_Log' Quick Search.
-18. Review and interact with the results. Look at the 'Discovered Patterns' that are automatically created through analysis of the log records.
-19. Click on the 'DT_WAS_SystemOut' Quick Search.
-20. Review and interact with the results. Look at the 'Configured Patterns' that are developed as part of the WebSphere Insight Packs. 
-21. Provide feedback!!
+14. Launch SCAA OpenBeta driver 1 by launching your Firefox 17 browser pointing to http://10.10.10.2:9988/Unity and logging in with unityadmin:unityadmin.
+15. Launch the Online Polling Sample server app in your browser at http://10.10.10.3:9080/OnlinePollingSampleWeb/VoteServlet.
+16. Initialize the Online Polling Sample server app by selecting one of the two options.
+17. Cast some votes in the sample app.
+18. In the SCAA browser window, click on the 'Liberty_Trace_Log' Quick Search.
+19. Review and interact with the results. Look at the 'Discovered Patterns' that are automatically created through analysis of the log records.
+20. Click on the 'DT_WAS_SystemOut' Quick Search.
+21. Review and interact with the results. Look at the 'Configured Patterns' that are developed as part of the WebSphere Insight Packs. 
+22. Provide feedback!!

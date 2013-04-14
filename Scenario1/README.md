@@ -1,5 +1,5 @@
 Readme
-
+--------------------
 1. install virtualbox
 2. install vagrant
 3. create a host directory for box1 (SCAA OpenBeta D1 Box) - vagrant init then replace Vagrantfile with one from ../shared/box1

@@ -1,0 +1,8 @@
+#CreateSourceType LibertyDemo/Liberty_Messages_ST.config  <-- using existing Generic
+CreateCollection LibertyDemo/Liberty_Messages_C.config
+CreateLogSource LibertyDemo/Liberty_Messages.config
+CreateQuickSearch LibertyDemo/Liberty_Messages_QS.config
+#CreateSourceType LibertyDemo/Liberty_Trace_ST.config  <-- using existing Generic
+CreateCollection LibertyDemo/Liberty_Trace_C.config
+CreateLogSource LibertyDemo/Liberty_Trace.config
+CreateQuickSearch LibertyDemo/Liberty_Trace_QS.config

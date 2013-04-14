@@ -37,8 +37,9 @@ Vagrant.configure("2") do |config|
   # Share an additional folder to the guest VM. The first argument is
   # the path on the host to the actual folder. The second argument is
   # the path on the guest to mount the folder. And the optional third
-  # argument is a set of non-required options.
-  # config.vm.synced_folder "../data", "/vagrant_data"
+  
+  #build a common shared folder across all boxes we're using
+  config.vm.synced_folder "../shared", "/opt/scla/shared"
   
 
   # Provider-specific configuration so you can fine-tune various
@@ -50,14 +51,23 @@ Vagrant.configure("2") do |config|
   #   vb.gui = true
   #
   #   # Use VBoxManage to customize the VM. For example to change memory:
-     vb.customize ["modifyvm", :id, "--name", "centOS64-openbeta-d1", "--memory", "4000", "--cpus", "2"]
+     vb.customize ["modifyvm", :id, "--name", "centOS64-driver1", "--memory", "6000", "--cpus", "3"]
    end
   #
   # View the documentation for the provider you're using for more
   # information on available options.
 
   # Enable shell provisioning
-  config.vm.provision :shell, :path => "CentOS64_ILA_Provision_OpenBeta-d1.sh"
+  
+  #Run one time withj box1 to download everything to shared pre-req directory, then comment out for faster vagrant up!
+  #
+  #config.vm.provision :shell, :path => "../shared/download_prereq.sh"
+  
+  #provision SCAA driver 1
+  config.vm.provision :shell, :path => "../shared/grp1-provision-scaa-d1.sh"
+  
+  #provision
+  config.vm.provision :shell, :path => "../shared/grp1-provision-scenario1.sh"
   
   
   # Enable provisioning with Puppet stand alone.  Puppet manifests

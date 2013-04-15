@@ -1,14 +1,14 @@
-ILA-Open-Beta
+Smart Cloud Analytics for Applications (SCAA) (fka ILA-IBM Log Analytics) Open-Beta
 =============
 
-Experiments with ILA and DevOps, IT Operations and Automation Tools
+Experiments with SCAA and DevOps, IT Operations and Automation Tools
 
 Current Scenarios: <-- add your ideas as enhancements (under issues)
 
 * [COMPLETE] automatically spin up a box and install ILA OpenBeta Driver 1
 * [COMPLETE] automatically spin up multiple networked boxes (host-only private network)
 * automatically spin up multiple networked boxes in common deployment and usage patterns
-* App/OS --> LFA --> ILA
+* [**SEE SCENARIO 1 BRANCH**] WebSphere Liberty/OnlinePollingServer App --> LFA --> SCAA
 * App/OS --> Syslog --> ILA
 * App/OS --> LogShipper --> ILA
 * App --> log4j --> ILA

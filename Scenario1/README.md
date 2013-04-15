@@ -53,3 +53,6 @@ If this is the first time, the following happens
 17. Click on the 'DT_WAS_SystemOut' Quick Search.
 18. Review and interact with the results. Look at the 'Configured Patterns' that are developed as part of the WebSphere Insight Packs. 
 19. Provide feedback!!
+
+
+This work is offered as-is for community use. My ideas and contributions are my own. All materials are posted by me as an individual and are not an expression of support, acceptance or approval of my employer IBM. All materials are to be used within a testing environment and should not be considered worthy of production use without further review and optimization.

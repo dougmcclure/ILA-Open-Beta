@@ -8,7 +8,7 @@ Current Scenarios: <-- add your ideas as enhancements (under issues)
 * [COMPLETE] automatically spin up a box and install ILA OpenBeta Driver 1
 * [COMPLETE] automatically spin up multiple networked boxes (host-only private network)
 * automatically spin up multiple networked boxes in common deployment and usage patterns
-* [**SEE SCENARIO 1 BRANCH**] WebSphere Liberty/OnlinePollingServer App --> LFA --> SCAA
+* [COMPLETE - merged 4.23.13] WebSphere Liberty/OnlinePollingServer App --> LFA --> SCAA (using CentOS 6.4 Base Box)
 * App/OS --> Syslog --> ILA
 * App/OS --> LogShipper --> ILA
 * App --> log4j --> ILA

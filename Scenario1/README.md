@@ -1,6 +1,8 @@
 Readme
 --------------------
-## The following is a draft of the readme for the planned first release of Scenario1 for evaluating IBM's Smart Cloud Analytics for Applications (SCAA, aka Log Analytics).  
+## Please see my blog for the most up to date guide for installing and using Scenario 1.
+
+The following is a draft of the readme for the planned first release of Scenario1 for evaluating IBM's Smart Cloud Analytics for Applications (SCAA, aka Log Analytics).  
 
 1. install virtualbox
 2. install vagrant

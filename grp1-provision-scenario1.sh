@@ -53,7 +53,7 @@ echo "Install WebSphere Liberty Demo Configuration"
 
 #copy WebSphere Liberty configration files to sampleScenario directory included with milestone driver 1
 
-sudo -u $USERNAME cp -R $SHARED_DIR/grp1/LibertyDemo $INSTALL_DIR/sampleScenarios
+sudo -u $USERNAME cp -R $SHARED_DIR/LibertyDemo $INSTALL_DIR/sampleScenarios
 
 #must be in this directory to execute perl script
 

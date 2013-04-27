@@ -93,7 +93,7 @@ echo "[SCAA] Directories Created"
 
 echo "[SCAA] Explode the Tarball"
 
-tar -C $BASE_DIR -zxf $SHARED_DIR/grp1/$DRIVER_NAME 
+tar -C $BASE_DIR -zxf $SHARED_DIR/$DRIVER_NAME 
 
 echo "[SCAA] Driver Exploded"
 
@@ -111,7 +111,7 @@ echo "[SCAA] Install Driver"
 
 #silent response file for SCAA must be in the $PREREQ_DIR/grp1 directory
 
-sudo -u $USERNAME $BASE_DIR/install.sh -s $SHARED_DIR/grp1/vagrant_smcl_silent_install.xml
+sudo -u $USERNAME $BASE_DIR/install.sh -s $SHARED_DIR/vagrant_smcl_silent_install.xml
 
 #some weird errors at the end that seem harmless?
 #/opt/scla/install.sh: line 34: install.log: Permission denied
@@ -129,7 +129,6 @@ cd $INSTALL_DIR/sampleScenarios/
 sudo -u $USERNAME perl CreateSampleScenario.pl
 
 echo "[SCAA] SCAA Sample Data Installed"
-
 
 echo "how long does this provisioning script take?"
 

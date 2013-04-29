@@ -1,7 +1,6 @@
 #!/bin/bash
-# Vagrant provisioning script for Remote LFA Box
-# Used for demonstrating IBM Log Analytics Milestone Driver 1
-# Remote LFA Operations
+# Vagrant provisioning script for box2: WebSphere Liberty + Sample App
+# Using Remote LFA Box (on box2) to send logs to box1
 #
 #Doug McClure
 #v1.0 4/6/13 Base CentOS 6.4 box with OpenBeta Driver 1 LFA
@@ -10,7 +9,7 @@
 #v1.3 4/11/13 Set Liberty sample app logging level by replacing server.xml file, install LFA configs 
 #            (lfademo.conf/fmt) to watch Liberty messages & trace logs, restart LFA to take configs
 #v1.4 4/12/13 Moving all download steps out of this provisioning script and into separate provisioning script 
-#
+#v1.5 4/23/13 updates for milestone2 and LFA 6.3
 #
 # README:
 # - Websphere Liberty Early Access Version must be downloaded and stored in the $SHARED_DIR
@@ -32,13 +31,10 @@ GROUP_NAME="scla"
 USERNAME="scla"
 PASSWORD="scla"
 BASE_DIR="/opt/scla"
-INSTALL_DIR="$BASE_DIR/driver1"
+INSTALL_DIR="$BASE_DIR/driver"
 SHARED_DIR="/opt/scla/shared"
 PREREQ_DIR="/opt/scla/shared/prereq"
-#Main Open Beta Driver
-VAGRANT_BOX_1="10.10.10.2"
-#Remote LFA box
-VAGRANT_BOX_2="10.10.10.3"
+
 
 echo "[SCAA] Turning off SELINUX on this CentOS Box"
 
@@ -75,7 +71,7 @@ echo "[SCAA] Install PREREQ for SCAA Remote LFA Box"
 #yum -y install ksh.x86_64
 #
 
-sudo yum -y localinstall $PREREQ_DIR/grp1/*.rpm
+sudo yum -y localinstall $PREREQ_DIR/common/*.rpm
 
 
 echo "[SCAA] Change iptables rules to allow SCAA to always work" 
@@ -101,7 +97,7 @@ echo "[SCAA] Install User and Group Created"
 echo "[SCAA] Create Directories"
 
 # create base and install directory
-#/opt/scla/driver1/lfa
+#/opt/scla/driver/lfa
 
 mkdir -p $INSTALL_DIR/lfa
 
@@ -109,17 +105,23 @@ chown -R $USERNAME:$GROUP_NAME $BASE_DIR
 
 echo "[SCAA] Directories Created"
 
-sudo -u $USERNAME cp -R $SHARED_DIR/grp2/lfa/ $INSTALL_DIR
+##FIX DIRECTORIES
+
+sudo -u $USERNAME cp -R $SHARED_DIR/box2-files/lfa/ $INSTALL_DIR
 
 chown -R $USERNAME:$GROUP_NAME $BASE_DIR
 
-#<-- creates an install dir under lfa/IBM-LFA-6.23
-
 cd $INSTALL_DIR/lfa
+
+#Figure this out, in first relesae tihs worked fine: sudo -u $USERNAME ./ITM_Log_Agent_Setup.sh $INSTALL_DIR/lfa/ $INSTALL_DIR/lfa/
+
+#<-- install of LFA creates an install dir under lfa/IBM-LFA-6.30
 
 sudo -u $USERNAME ./ITM_Log_Agent_Setup.sh $INSTALL_DIR/lfa/ $INSTALL_DIR/lfa/
 
-echo "[SCAA] Driver 1 LFA Installed"
+#./ITM_Log_Agent_Setup.sh $INSTALL_DIR/lfa/ $INSTALL_DIR/lfa/
+
+echo "[SCAA] Driver LFA Installed"
 
 #how long does this provisioning script take?
 

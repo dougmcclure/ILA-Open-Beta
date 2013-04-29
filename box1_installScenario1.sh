@@ -1,12 +1,18 @@
 #!/bin/bash
 # Provision main SCAA box for the multi-box scenario1 
-# Used for demonstrating IBM Log Analytics Milestone Driver 1
+# Used for demonstrating IBM Log Analytics Milestone Driver 2
 # Main ILA driver and Remote APP+LFA Operations
 #
 #Doug McClure
-#v1.0 4/12/13 Extract the driver1 LFA from main ILA box and place in $SHARED_DIR/lfa
+#v1.0 4/23/13 Extract the driver2 LFA from main ILA box and place in $SHARED_DIR/lfa
 #             Provision the SCAA driver 1 with WebSphere Liberty collection, log sources and saved searches
 ###############################################################################################################
+#System Reference:
+#box1-driver: 10.10.10.2
+#box2-liberty: 10.10.10.3
+#
+#
+###################
 #Uncomment this to see verbose install
 set -x
 
@@ -19,13 +25,10 @@ GROUP_NAME="scla"
 USERNAME="scla"
 PASSWORD="scla"
 BASE_DIR="/opt/scla"
-INSTALL_DIR="$BASE_DIR/driver1"
+INSTALL_DIR="$BASE_DIR/driver"
 SHARED_DIR="/opt/scla/shared"
 PREREQ_DIR="/opt/scla/shared/prereq"
-#Main Open Beta Driver
-VAGRANT_BOX_1="10.10.10.2"
-#Remote LFA box
-VAGRANT_BOX_2="10.10.10.3"
+
 
 ######
 #
@@ -39,13 +42,26 @@ echo "[SCAA] Copy LFA Files to shared directory"
 #
 # copy them to shared prereq dir - grp2 for the second box to pick up
 #
-mkdir -p $SHARED_DIR/grp2/lfa/unity_images
-mkdir -p $SHARED_DIR/grp2/lfa/work_files/Configurations/Data_Collector
 
-cp $INSTALL_DIR/setupScripts/ITM_Log_Agent_Setup.sh $SHARED_DIR/grp2/lfa
-cp $INSTALL_DIR/unity_images/LFA_ITM_FP9.tar.gz $SHARED_DIR/grp2/lfa/unity_images
-cp $INSTALL_DIR/unity_images/6.2.3.2-TIV-ITM_LFA-IF0002.tar $SHARED_DIR/grp2/lfa/unity_images
-cp $INSTALL_DIR/work_files/Configurations/Data_Collector/* $SHARED_DIR/grp2/lfa/work_files/Configurations/Data_Collector/
+
+###########
+## fix directories so we don't have conflicts with others???
+##############
+mkdir -p $SHARED_DIR/box2-files/lfa/unity_images
+mkdir -p $SHARED_DIR/box2-files/lfa/work_files/Configurations/Data_Collector
+
+
+#
+# update for LFA 6.3
+#
+#LFA_0630.tar.gz
+#
+
+cp $INSTALL_DIR/setupScripts/ITM_Log_Agent_Setup.sh $SHARED_DIR/box2-files/lfa
+
+cp $INSTALL_DIR/unity_images/LFA_0630.tar.gz $SHARED_DIR/box2-files/lfa/unity_images
+
+cp $INSTALL_DIR/work_files/Configurations/Data_Collector/* $SHARED_DIR/box2-files/lfa/work_files/Configurations/Data_Collector/
 
 echo "[SCAA] LFA Files Ready for Copying to Remote Systems from shared directory"
 
@@ -53,7 +69,7 @@ echo "Install WebSphere Liberty Demo Configuration"
 
 #copy WebSphere Liberty configration files to sampleScenario directory included with milestone driver 1
 
-sudo -u $USERNAME cp -R $SHARED_DIR/LibertyDemo $INSTALL_DIR/sampleScenarios
+sudo -u $USERNAME cp -R $SHARED_DIR/box1-files/LibertyDemo $INSTALL_DIR/sampleScenarios
 
 #must be in this directory to execute perl script
 

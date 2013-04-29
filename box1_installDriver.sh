@@ -61,25 +61,10 @@ echo "[SCAA] Install PREREQ for SCAA Box"
 #compat-libstdc++-33, redhat-lsb, redhat-lsb-core-4.0-7.el6.centos.i686 compat-libstdc++-33.i686, ksh.x86_64
 #
 
-#sudo yum install -y yum-downloadonly
-
-#sudo yum -y install compat-libstdc++-33 --downloadonly --downloaddir=$PREREQ_DIR/grpM2
-#sudo yum -y install redhat-lsb --downloadonly --downloaddir=$PREREQ_DIR/grpM2
-#check into why this isn't d/l with the above - this adds /usr/bin/lsb-release needed for M2 driver.
-#sudo yum -y install redhat-lsb-core-4.0-7.el6.centos.i686 --downloadonly --downloaddir=$PREREQ_DIR/grpM2
-#sudo yum -y install compat-libstdc++-33.i686 --downloadonly --downloaddir=$PREREQ_DIR/grpM2
-#sudo yum -y install ksh.x86_64 --downloadonly --downloaddir=$PREREQ_DIR/grpM2
-
 ### is there a way to lay down without yum going online to do dep checks? just using rpm command maybe??
 
 sudo yum -y localinstall $PREREQ_DIR/common/*.rpm
 
-#add this to pre-req script!!
-#ISCLA908E ERROR: lsb_release binary is not installed on the system ...
-#Installation of IBM Log Analytics Workgroup Edition requires lsb_release b
-#Install RPM Package for LSB (Linux Standard Base) and re-try installation
-
-#sudo yum -y install redhat-lsb-core-4.0-7.el6.centos.i686
 
 echo "[SCAA] Change iptables rules to allow SCAA to always work" 
 
@@ -128,7 +113,7 @@ sudo -u $USERNAME $BASE_DIR/install.sh -s $SHARED_DIR/box1-files/vagrant_smcl_si
 #some weird errors at the end that seem harmless?
 #/opt/scla/install.sh: line 34: install.log: Permission denied
 
-echo "[SCAA] Driver 2 Installed"
+echo "[SCAA] Driver Installed"
 
 echo "[SCAA] Install SCAA Sample Data"
 

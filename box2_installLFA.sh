@@ -19,6 +19,12 @@
 #   they get through the T&C ack needed via a web browser download
 #
 ########################################################################################################
+#System Reference:
+#box1-driver: 10.10.10.2
+#box2-liberty: 10.10.10.3
+#
+#
+###################
 #Uncomment this to see verbose install
 set -x
 
@@ -61,18 +67,7 @@ echo "Install PRE-REQs for SCAA"
 
 echo "[SCAA] Install PREREQ for SCAA Remote LFA Box"
 
-#
-# this should install the following:
-# Thanks to c835722 for help here.
-#
-#yum -y install compat-libstdc++-33
-#yum -y install redhat-lsb
-#yum -y install compat-libstdc++-33.i686
-#yum -y install ksh.x86_64
-#
-
 sudo yum -y localinstall $PREREQ_DIR/common/*.rpm
-
 
 echo "[SCAA] Change iptables rules to allow SCAA to always work" 
 
@@ -105,7 +100,7 @@ chown -R $USERNAME:$GROUP_NAME $BASE_DIR
 
 echo "[SCAA] Directories Created"
 
-##FIX DIRECTORIES
+echo "[SCAA] Copy LFA to System and Install"
 
 sudo -u $USERNAME cp -R $SHARED_DIR/box2-files/lfa/ $INSTALL_DIR
 
@@ -113,13 +108,9 @@ chown -R $USERNAME:$GROUP_NAME $BASE_DIR
 
 cd $INSTALL_DIR/lfa
 
-#Figure this out, in first relesae tihs worked fine: sudo -u $USERNAME ./ITM_Log_Agent_Setup.sh $INSTALL_DIR/lfa/ $INSTALL_DIR/lfa/
-
 #<-- install of LFA creates an install dir under lfa/IBM-LFA-6.30
 
 sudo -u $USERNAME ./ITM_Log_Agent_Setup.sh $INSTALL_DIR/lfa/ $INSTALL_DIR/lfa/
-
-#./ITM_Log_Agent_Setup.sh $INSTALL_DIR/lfa/ $INSTALL_DIR/lfa/
 
 echo "[SCAA] Driver LFA Installed"
 

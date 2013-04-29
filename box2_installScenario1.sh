@@ -9,6 +9,12 @@
 #             $SHARED_DIR/* within the main provisioning script.
 #v1.1 4/23/13 updates for milestone 2
 #####################################################################################################
+#System Reference:
+#box1-driver: 10.10.10.2
+#box2-liberty: 10.10.10.3
+#
+#
+###################
 #Uncomment this to see verbose install
 set -x
 

@@ -6,13 +6,15 @@ To install and run the single box scenario :
 
 1. Install Virtualbox (https://www.virtualbox.org/)
 2. Install Vagrant (http://www.vagrantup.com/)
-3. ```git clone https://github.com/dougmcclure/ILA-Open-Beta.git``` (If you don't have git installed, I think you can just download the repo as a .zip)
-4. Download SCAA OpenBeta Driver 2 (https://www.ibm.com/developerworks/servicemanagement/bsm/log/downloads.html) and place in /shared/box1-files directory
-5. ```cd box1 && vagrant up```
+3. Download the git repo using either ```git clone https://github.com/dougmcclure/ILA-Open-Beta.git``` or download the repo as a .zip file and unzip
+4. Download SCAA OpenBeta Driver 2 (https://www.ibm.com/developerworks/servicemanagement/bsm/log/downloads.html) and place in the /shared/box1-files directory of the repo
+5. Open a terminal or Windows command shell and navigate to the box1 repo directory. Issue the ```vagrant up``` command.
+
+Review the blog post here (http://t.co/CbBvu5gLzG) from the "Configured Patterns" section for a guided demo.
 
 To install and run the multi box scanario add the additional step(s) :
 
-6. ```cd box2 && vagrant up```
+6. Open a new terminal or Windows command shell and navigate to the box2 repo directory. Issue the ```vagrant up``` command.
 
 Review the blog post here (http://t.co/CbBvu5gLzG) from the "Launch Websphere Liberty Sample Application" section for a guided demo.
 

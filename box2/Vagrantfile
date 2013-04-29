@@ -51,7 +51,7 @@ Vagrant.configure("2") do |config|
   #   vb.gui = true
   #
   #   # Use VBoxManage to customize the VM. For example to change memory:
-     vb.customize ["modifyvm", :id, "--name", "centOS64-liberty1", "--memory", "4000", "--cpus", "2"]
+     vb.customize ["modifyvm", :id, "--name", "box2-liberty", "--memory", "4000", "--cpus", "2"]
    end
   #
   # View the documentation for the provider you're using for more
@@ -63,11 +63,11 @@ Vagrant.configure("2") do |config|
   #
   #config.vm.provision :shell, :path => "../download_prereq.sh"
   
-  # provision LFA, set up for Websphere Liberty Demo
-  config.vm.provision :shell, :path => "../grp2-provision-scaa-d1-LFA-only.sh"
+  # provision LFA, set up for Websphere Liberty Demo driver 2
+  config.vm.provision :shell, :path => "../box2_installLFA.sh"
   
-  #provision WebSphere Libery demo
-  config.vm.provision :shell, :path => "../grp2-provision-was_liberty_demo.sh"
+  #provision WebSphere Libery demo driver 2
+  config.vm.provision :shell, :path => "../box2_installScenario1.sh"
   
   # Enable provisioning with Puppet stand alone.  Puppet manifests
   # are contained in a directory path relative to this Vagrantfile.

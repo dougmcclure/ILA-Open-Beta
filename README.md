@@ -7,7 +7,7 @@ To install and run the single box scenario :
 1. Install Virtualbox (https://www.virtualbox.org/)
 2. Install Vagrant (http://www.vagrantup.com/)
 3. ```git clone https://github.com/dougmcclure/ILA-Open-Beta.git``` (If you don't have git installed, I think you can just download the repo as a .zip)
-4. Download SCAA OpenBeta Driver 1 and place in /shared directory (updates for driver 2 soon!)
+4. Download SCAA OpenBeta Driver 2 (https://www.ibm.com/developerworks/servicemanagement/bsm/log/downloads.html) and place in /shared/box1-files directory
 5. ```cd box1 && vagrant up```
 
 Review the blog post here (http://t.co/CbBvu5gLzG) from the "Configured Patterns" section for a guided demo.

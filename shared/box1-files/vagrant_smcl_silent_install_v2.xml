@@ -44,11 +44,11 @@
 
 <!-- Change the installation location as per installation machine environment.  This  -->
 <!-- is the directory where you want the software to be installed.                    -->
-<profile id='IBM Log Analytics Workgroup Edition' installLocation='/opt/scla/driver1/'>
+<profile id='IBM Log Analytics Workgroup Edition' installLocation='/opt/scla/driver/'>
 
 <!-- Change the value setting in the next line.  It should match the installationLocation -->
 <!-- setting in the line above.                                                           -->
-<data key='eclipseLocation' value='/opt/scla/driver1/'/>
+<data key='eclipseLocation' value='/opt/scla/driver/'/>
 
 <data key='user.import.profile' value='false'/>
 <data key='cic.selector.os' value='linux'/>
@@ -62,6 +62,6 @@
 <data key='user.database.port.number,com.ibm.tivoli.scloganalytics' value='1627'/>
 <data key='user.eif.port.number,com.ibm.tivoli.scloganalytics' value='5529'/>
 <data key='user.searchengine.port.number,com.ibm.tivoli.scloganalytics' value='9989'/>
-<data key='user.zookeeper.port.number,com.ibm.tivoli.scloganalytics' value='12181'/>
+<data key='user.searchengineQS.port.number,com.ibm.tivoli.scloganalytics' value='7205'/>
 </profile>
 </agent-input>

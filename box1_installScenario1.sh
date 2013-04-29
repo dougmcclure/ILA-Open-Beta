@@ -37,37 +37,19 @@ PREREQ_DIR="/opt/scla/shared/prereq"
 #####
 #
 echo "[SCAA] Copy LFA Files to shared directory"
-#
-# These files will be updated, possibly different with the milestone 2 driver as we're on LFA 6.3 at that time
-#
-# copy them to shared prereq dir - grp2 for the second box to pick up
-#
 
-
-###########
-## fix directories so we don't have conflicts with others???
-##############
 mkdir -p $SHARED_DIR/box2-files/lfa/unity_images
 mkdir -p $SHARED_DIR/box2-files/lfa/work_files/Configurations/Data_Collector
 
-
-#
-# update for LFA 6.3
-#
-#LFA_0630.tar.gz
-#
-
 cp $INSTALL_DIR/setupScripts/ITM_Log_Agent_Setup.sh $SHARED_DIR/box2-files/lfa
-
 cp $INSTALL_DIR/unity_images/LFA_0630.tar.gz $SHARED_DIR/box2-files/lfa/unity_images
-
 cp $INSTALL_DIR/work_files/Configurations/Data_Collector/* $SHARED_DIR/box2-files/lfa/work_files/Configurations/Data_Collector/
 
 echo "[SCAA] LFA Files Ready for Copying to Remote Systems from shared directory"
 
 echo "Install WebSphere Liberty Demo Configuration"
 
-#copy WebSphere Liberty configration files to sampleScenario directory included with milestone driver 1
+#copy WebSphere Liberty configration files to sampleScenario directory included with milestone driver 
 
 sudo -u $USERNAME cp -R $SHARED_DIR/box1-files/LibertyDemo $INSTALL_DIR/sampleScenarios
 
@@ -78,7 +60,6 @@ cd $INSTALL_DIR/sampleScenarios/
 #install WebSphere Liberty Demo configurations (collection, log sources, saved searches)
 
 sudo -u $USERNAME perl CreateSampleScenario.pl 9988 unityadmin unityadmin LibertyDemo/LibertyDemo.def
-
 
 #how long does this provisioning script take?
 

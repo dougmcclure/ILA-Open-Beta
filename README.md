@@ -10,13 +10,13 @@ To install and run the single box scenario :
 4. Download SCAA OpenBeta Driver 1 and place in /shared directory (updates for driver 2 soon!)
 5. ```cd box1 && vagrant up```
 
-Review the blog post here (http://t.co/CbBvu5gLzG) from the "Launch Websphere Liberty Sample Application" section for a guided demo.
+Review the blog post here (http://t.co/CbBvu5gLzG) from the "Configured Patterns" section for a guided demo.
 
 To install and run the multi box scanario add the additional step(s) :
 
 6. ```cd box2 && vagrant up```
 
-Review the blog post here (http://t.co/CbBvu5gLzG) from the "Configured Patterns" section for a guided demo.
+Review the blog post here (http://t.co/CbBvu5gLzG) from the "Launch Websphere Liberty Sample Application" section for a guided demo.
 
 
 Roadmap

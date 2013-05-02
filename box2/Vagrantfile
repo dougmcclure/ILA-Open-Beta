@@ -66,8 +66,11 @@ Vagrant.configure("2") do |config|
   # provision LFA, set up for Websphere Liberty Demo driver 2
   config.vm.provision :shell, :path => "../box2_installLFA.sh"
   
-  #provision WebSphere Libery demo driver 2
+  #provision WebSphere Libery demo driver 2 (requires box1 and box2)
   config.vm.provision :shell, :path => "../box2_installScenario1.sh"
+  
+   #provision Scenario 2 (requires at least box1 & box2)
+  config.vm.provision :shell, :path => "../box2_installScenario2.sh"
   
   # Enable provisioning with Puppet stand alone.  Puppet manifests
   # are contained in a directory path relative to this Vagrantfile.

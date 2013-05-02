@@ -1,0 +1,8 @@
+CreateSourceType SyslogDemo1/SyslogDemo1_ST.config
+CreateCollection SyslogDemo1/SyslogDemo1_C.config
+CreateLogSource SyslogDemo1/SyslogDemo1_box1.config
+CreateLogSource SyslogDemo1/SyslogDemo1_box2.config
+#CreateLogSource SyslogDemo1/SyslogDemo1_box3.config
+CreateQuickSearch SyslogDemo1/SyslogDemo1_box1_QS.config
+CreateQuickSearch SyslogDemo1/SyslogDemo1_box2_QS.config
+#CreateQuickSearch SyslogDemo1/SyslogDemo1_box3_QS.config

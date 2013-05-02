@@ -40,7 +40,6 @@ Vagrant.configure("2") do |config|
   #build a common shared folder across all boxes we're using
   config.vm.synced_folder "../shared", "/opt/scla/shared"
   
-
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
   # Example for VirtualBox:
@@ -60,13 +59,16 @@ Vagrant.configure("2") do |config|
   
   #Run one time with box1 to download everything to shared pre-req directory, then comment out for faster vagrant up!
   #
-  config.vm.provision :shell, :path => "../download_prereq.sh"
+  #config.vm.provision :shell, :path => "../download_prereq.sh"
   
   #provision SCAA driver 2
   config.vm.provision :shell, :path => "../box1_installDriver.sh"
   
-  #provision Scenario 1 - milestone2 updates
+  #provision Scenario 1 - milestone2 updates (requires box1 & box2)
   config.vm.provision :shell, :path => "../box1_installScenario1.sh"
+  
+  #provision Scenario 2 (requires at least box1 & box2)
+  config.vm.provision :shell, :path => "../box1_installScenario2.sh"
   
   # Enable provisioning with Puppet stand alone.  Puppet manifests
   # are contained in a directory path relative to this Vagrantfile.

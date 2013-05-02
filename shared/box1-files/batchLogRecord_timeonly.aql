@@ -1,0 +1,193 @@
+/******************************************************** {COPYRIGHT-TOP} ***
+* Licensed Materials - Property of IBM
+* "Restricted Materials of IBM"
+* 5725-K26
+*
+* (C) Copyright IBM Corp. 2013  All Rights Reserved.
+*
+* US Government Users Restricted Rights - Use, duplication, or
+* disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+********************************************************* {COPYRIGHT-END} **/
+module timeOnlySplitter;
+ /*******************************************
+ *  Split the log record as anything starting with a timestamp, until the next timestamp; 
+ *  v2: Handle partial log records: Types A, B and C;
+ *     
+ *  @author rosecatherinek 
+ ******************************************/
+
+import module newlineSplitter;
+import module common;
+import module GA_common;
+
+--In place of the "Doc" view that detag.aql would generate:
+create view Doc as select D.text from Document D;
+	
+
+-- (A) get single lines that have timestamp
+create view SingleLine_Timestamp as
+	select S.logSpan
+	from newlineSplitter.LogRecord S, common.DateTimeOutput T
+	where Overlaps(S.logSpan, T.span) ;
+
+
+-- (B) get single lines that do not have timestamp
+create view SingleLine_NoTimestamp as
+	(
+		select S.logSpan
+		from newlineSplitter.LogRecord S
+	)
+	minus
+	(
+		select S.logSpan
+		from SingleLine_Timestamp S
+	);
+	
+
+-- (C) get continguous blocks of log input (excludes those that have a timestamp)
+create view LogPartialBlock as
+	extract blocks
+    	with count between 1 and 100000 	-- some random max count
+    	and separation between 0 and 1 characters
+    	on S.logSpan as logSpan
+	from SingleLine_NoTimestamp S
+	consolidate on logSpan using 'ContainedWithin';
+	
+	
+-- (D) merge the partial block with the immediately preceding timestamp block
+create view LogPartialBlock_Timestamp as
+		select CombineSpans(T.logSpan, L.logSpan) as logSpan
+		from SingleLine_Timestamp T, LogPartialBlock L
+		where Follows(T.logSpan, L.logSpan, 0, 2);
+		
+
+
+-- (D.2) add partial blocks (if any) - type C
+create view LogPartialBlock_Timestamp_C as
+	(
+	 	select L.logSpan
+	 	from LogPartialBlock_Timestamp L
+	 )
+	 union all
+	 (
+	 	select L.logSpan
+	 	from LogPartialBlock L
+	 );
+	 
+-- (D.3) remove duplicates
+create view LogPartialBlock_Timestamp_C_Unique as
+	select L.logSpan
+	from LogPartialBlock_Timestamp_C L
+	consolidate on L.logSpan using 'ContainedWithin';
+	
+
+
+-- (E) add single line records with timestamp
+create view LogRecordAll as
+		(
+			select L.logSpan
+			from LogPartialBlock_Timestamp_C_Unique L
+		)
+		union all
+		(
+			select L.logSpan
+			from SingleLine_Timestamp L
+		);
+		
+		
+		
+-- (F) remove duplicates from (E)
+create view LogRecordUnique as
+	select L.logSpan
+	from LogRecordAll L
+	consolidate on L.logSpan using 'ContainedWithin';
+	
+-- (G) create the timestamp col
+create view LogRecordTS as
+	select L.logSpan as logSpan, T.span as timestamp
+	from LogRecordUnique L, common.DateTimeOutput T
+	where Overlaps(L.logSpan, T.span) consolidate on L.logSpan using 'ContainedWithin';
+
+-- (H) add type to the log records
+	
+-- (H.2) Type B: has timestamp, but is the last record 
+create view MaxLR as
+	select Max(L.logSpan) as logSpan
+	from LogRecordTS L;
+	
+	
+create view LogRecordB as
+	select L.logSpan, L.timestamp, GetString('B') as type
+	from LogRecordTS L, MaxLR M
+	where Equals(L.logSpan, M.logSpan);
+
+	
+
+-- (H.1) Type A: has timestamp; but is NOT the last record
+create view LogRecordCandA as
+	(
+		select L.logSpan, L.timestamp
+		from LogRecordTS L
+	)
+	minus
+	(
+		select L.logSpan, L.timestamp
+		from LogRecordB L
+	);
+	
+create view LogRecordA as
+	select L.logSpan, L.timestamp, GetString('A') as type
+	from LogRecordCandA L;
+
+
+
+
+-- (H.3) Type C: if first entry, and has no timestamp
+create view LogRecordCandC as
+	(
+		select L.logSpan
+		from LogRecordUnique L
+	)
+	minus
+	(
+		select L.logSpan
+		from LogRecordTS L
+	);
+	
+	
+create view LogRecordC as
+	select L.logSpan, GetString(' ') as timestamp, GetString('C') as type
+	from LogRecordCandC L;
+
+
+
+-- (I) create the output view
+create view LogRecordFinal as
+	(
+		select L.logSpan as logSpan, GetString(L.logSpan) as logText, GetString(L.timestamp) as timestamp, L.type 
+		from LogRecordA L
+	)
+	union all
+	(
+		select L1.logSpan as logSpan, GetString(L1.logSpan) as logText, GetString(L1.timestamp) as timestamp, L1.type 
+		from LogRecordB L1
+	)
+	union all
+	(
+		select L.logSpan as logSpan, GetString(L.logSpan) as logText,  GetString(L.timestamp) as timestamp, L.type 
+		from LogRecordC L
+	);
+	
+
+	
+create view LogRecord as
+	select L.logSpan as logSpan, GetString(L.logSpan) as logText, GetString(L.timestamp) as timestamp, L.type 
+	from LogRecordFinal L
+	order by L.logSpan;
+	
+export view LogRecord;
+
+
+
+
+

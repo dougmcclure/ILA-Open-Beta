@@ -18,6 +18,9 @@ To install and run the multi box scanario add the additional step(s) :
 
 Review the blog post here (http://t.co/CbBvu5gLzG) from the "Launch Websphere Liberty Sample Application" section for a guided demo.
 
+## Note: They are not keeping old milestone drivers available during the open beta. This means the above won't work unless you've got a copy of M1 already. The refresh for milestone 2 driver is available in the M2 Driver Support + Clean Up branch. I am awaiting some validation testing by others before merging.
+
+
 
 Roadmap
 ------------

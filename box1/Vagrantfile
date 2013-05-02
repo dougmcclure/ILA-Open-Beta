@@ -59,7 +59,7 @@ Vagrant.configure("2") do |config|
   
   #Run one time with box1 to download everything to shared pre-req directory, then comment out for faster vagrant up!
   #
-  #config.vm.provision :shell, :path => "../download_prereq.sh"
+  config.vm.provision :shell, :path => "../download_prereq.sh"
   
   #provision SCAA driver 2
   config.vm.provision :shell, :path => "../box1_installDriver.sh"

@@ -4,13 +4,11 @@ Installing IBM's Smart Cloud Analytics for Applications (SCAA, aka Log Analytics
 
 To install and run the single box scenario :
 
-1. Install Virtualbox (https://www.virtualbox.org/)
-2. Install Vagrant (http://www.vagrantup.com/)
+1. Install Virtualbox (https://www.virtualbox.org/) (tested with 4.2.12 on Win7)
+2. Install Vagrant (http://www.vagrantup.com/) (tested with 1.2.2 on Win7)
 3. Download the git repo using either ```git clone https://github.com/dougmcclure/ILA-Open-Beta.git``` or download the repo as a .zip file and unzip
 4. Download SCAA OpenBeta Driver 2 (https://www.ibm.com/developerworks/servicemanagement/bsm/log/downloads.html) and place in the /shared/box1-files directory of the repo
 5. Open a terminal or Windows command shell and navigate to the box1 repo directory. Issue the ```vagrant up``` command.
-
-Review the blog post here (http://t.co/CbBvu5gLzG) from the "Configured Patterns" section for a guided demo.
 
 Review the blog post here (http://t.co/CbBvu5gLzG) from the "Configured Patterns" section for a guided demo.
 
@@ -19,9 +17,6 @@ To install and run the multi box scanario add the additional step(s) :
 6. Open a new terminal or Windows command shell and navigate to the box2 repo directory. Issue the ```vagrant up``` command.
 
 Review the blog post here (http://t.co/CbBvu5gLzG) from the "Launch Websphere Liberty Sample Application" section for a guided demo.
-
-## Note: They are not keeping old milestone drivers available during the open beta. This means the above won't work unless you've got a copy of M1 already. The refresh for milestone 2 driver is available in the M2 Driver Support + Clean Up branch. I am awaiting some validation testing by others before merging.
-
 
 
 Roadmap
@@ -32,13 +27,12 @@ Current Scenarios: <-- add your ideas as enhancements (under issues)
 
     [COMPLETE] automatically spin up a box and install SCAA OpenBeta Driver 1
     [COMPLETE] automatically spin up multiple networked boxes (host-only private network)
-    automatically spin up multiple networked boxes in common deployment and usage patterns
-
-    [COMPLETE - merged 4.23.13] WebSphere Liberty/OnlinePollingServer App --> LFA Push --> SCAA (using CentOS 6.4 Base Box) --> Please see blog for more info: http://t.co/CbBvu5gLzG
-
-    Open Beta Milestone 2 Refresh
-    App/OS <-- New LFA Remote Pull --> SCAA
-    App/OS --> Syslog --> SCAA
+    [COMPLETE] WebSphere Liberty/OnlinePollingServer App --> LFA Push --> SCAA (using CentOS 6.4 Base Box) --> Please see blog for more info: http://t.co/CbBvu5gLzG
+    [COMPLETE] Open Beta Milestone 2 Refresh (merged 5/3/13)
+    
+    Scenario2 - App Logs + /var/log/* --> Local Syslog --> Aggregated Log --> LFA --> SCAA (early preview in the Scenario2 branch)
+    Scenario3 - App Logs + /var/log/* --> Central Syslog --> SCAA
+    App/OS <-- New LFA Remote Pull --> SCAA (need M3 driver fixes)
     App/OS --> Alternate LogShippers --> SCAA
     App --> log4j --> SCAA
     Netcool/OMNIBus Events --> SCAA

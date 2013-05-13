@@ -27,13 +27,9 @@ Vagrant.configure("2") do |config|
 
    #box2-liberty: 10.10.10.3
    #box3        : 10.10.10.4
-<<<<<<< HEAD
-=======
    
     #set hostname on box
   config.vm.hostname = "box1-driver"
-
->>>>>>> origin/Scenario2
    
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
@@ -70,18 +66,12 @@ Vagrant.configure("2") do |config|
   
   #provision SCAA driver 2
   config.vm.provision :shell, :path => "../box1_installDriver.sh"
-<<<<<<< HEAD
-  
-  #provision Scenario 1 - milestone2 updates
-  config.vm.provision :shell, :path => "../box1_installScenario1.sh"
-=======
   
   #provision Scenario 1 - milestone2 updates (requires box1 & box2)
   config.vm.provision :shell, :path => "../box1_installScenario1.sh"
   
   #provision Scenario 2 (requires at least box1 & box2)
   config.vm.provision :shell, :path => "../box1_installScenario2.sh"
->>>>>>> origin/Scenario2
   
   # Enable provisioning with Puppet stand alone.  Puppet manifests
   # are contained in a directory path relative to this Vagrantfile.

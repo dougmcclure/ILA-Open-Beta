@@ -11,11 +11,8 @@ To install IBM's Smart Cloud Analytics Log Analysis (SCALA) open beta and explor
 
 Review these blog posts for more information:
 
-scenario1 http://t.co/CbBvu5gLzG
-scenario2 TBD
-
-
-
+* scenario1 http://t.co/CbBvu5gLzG
+* scenario2 http://t.co/OYzh2bYIZA
 
 
 ## Roadmap

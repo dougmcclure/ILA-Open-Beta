@@ -35,7 +35,11 @@ sudo -u $USERNAME mv $INSTALL_DIR/unity_content/GA/GAContentPack_v1.1.0/extracto
 sudo cp $SHARED_DIR/box1-files/batchLogRecord_timeonly.aql $INSTALL_DIR/unity_content/GA/GAContentPack_v1.1.0/extractors/rulesset/timeOnlySplitter
 sudo cp $SHARED_DIR/box1-files/Date_BI.aql $INSTALL_DIR/unity_content/GA/GAContentPack_v1.1.0/extractors/rulesset/common
 sudo chown -R scla:scla $INSTALL_DIR
-sudo -u $USERNAME ./unity.sh -start
+
+#start SCAA back up. There will be a delay at this step while this happens. If problems - check /opt/scla/scenario2-startup.log
+(   exec 0>&- # close stdin
+    sudo -u $USERNAME ./unity.sh -start ;# start SCAA
+) &> $BASE_DIR/scenario2-startup.log
 
 #Copy SyslogDemo1 directory with files for provisioning SCAA (ST, C, LS, QS) to sampleScenario folder
 

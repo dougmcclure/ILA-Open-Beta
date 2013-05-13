@@ -1,0 +1,10 @@
+// Matches records for any Log file:
+//
+
+REGEX AllRecords
+(.*)
+hostname LABEL
+-file FILENAME
+logpath PRINTF("%s",file)
+text $1
+END

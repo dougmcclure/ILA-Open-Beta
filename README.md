@@ -10,13 +10,8 @@ Installing IBM's Smart Cloud Analytics for Applications (SCAA, aka Log Analytics
 
 To install and run the single box scenario :
 
-<<<<<<< HEAD
 1. Install Virtualbox (https://www.virtualbox.org/) (tested with 4.2.12 on Win7)
 2. Install Vagrant (http://www.vagrantup.com/) (tested with 1.2.2 on Win7)
-=======
-1. Install Virtualbox (https://www.virtualbox.org/) (tested using 4.2.12 on Windows 7)
-2. Install Vagrant (http://www.vagrantup.com/) (tested using v1.2.2 on Windows 7)
->>>>>>> origin/Scenario2
 3. Download the git repo using either ```git clone https://github.com/dougmcclure/ILA-Open-Beta.git``` or download the repo as a .zip file and unzip
 4. Download SCAA OpenBeta Driver 2 (https://www.ibm.com/developerworks/servicemanagement/bsm/log/downloads.html) and place in the /shared/box1-files directory of the repo
 5. Open a terminal or Windows command shell and navigate to the box1 repo directory. Issue the ```vagrant up``` command.
